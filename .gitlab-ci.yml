@@ -1,0 +1,15 @@
+include:
+    - project: vpa-group/gitlab-ci-common
+      file: /gitlab-ci/common-yml/common.yml
+    - project: vpa-group/gitlab-ci-common
+      file: /gitlab-ci/common-yml/publish_s3.yml
+
+stages:
+    - cleanup-start
+    - build-base
+    - app-check
+    - build
+    - publish-s3
+    - deploy-docker
+    - check-alive
+    - cleanup-end

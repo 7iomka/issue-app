@@ -1,0 +1,48 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.errorPageContainer {
+  color: #000;
+  background: #fff;
+  min-height: 100vh;
+  padding: 25px 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorPageTitle {
+  display: inline-block;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 0 20px 0 0;
+  padding: 10px 23px 10px 0;
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.errorPageCodeText {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+// Debug
+.errorDebugContent {
+  font-family: monospace;
+  color: #667;
+  background: #f4f4f4;
+  page-break-inside: avoid;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}

@@ -1,0 +1,16 @@
+ymaps[class*="search__suggest"] {
+  // styles for dropdown container
+  font-family: inherit;
+  left: 0;
+  right: 0;
+}
+
+ymaps[class*="search__suggest-item"] {
+  // styles for dropdown item
+  padding-left: 24px; // md size by default (hardcoded)
+}
+
+ymaps[class*="search__suggest-item_selected_yes"] {
+  // styles for selected/hover dropdown item
+  background-color: var(--primary);
+}

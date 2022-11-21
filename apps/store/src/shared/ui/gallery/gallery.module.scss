@@ -1,0 +1,63 @@
+.root {
+  /*! keep */
+}
+
+.filter {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  display: flex;
+  position: relative;
+  width: 50%;
+  max-width: 100%;
+  min-height: 120px;
+
+  @include media(">=xs") {
+    width: 33.33333%;
+  }
+
+  @include media(">=sm") {
+    width: 25%;
+  }
+
+  @include media(">=md") {
+    width: 20%;
+  }
+
+  @include media(">=lg") {
+    width: 16.66667%;
+  }
+
+  @include media(">=xxl") {
+    width: 12.5%;
+  }
+
+  > a {
+  }
+}
+
+.itemLink {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.itemImage {
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+
+  .itemLink:hover & {
+    transform: scale(1.2);
+  }
+}

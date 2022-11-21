@@ -1,0 +1,51 @@
+$light: (
+  --primary: #ffda7c,
+  --primary-active: #ffe5a1,
+  --primary-light: #fff3d4,
+  --primary-inverse: #000,
+  // secondary
+  --secondary: #fe7375,
+  --secondary-active: #fc8182,
+  --secondary-light: #ffecec,
+  --secondary-inverse: #fff,
+  // success
+  --success: #58dd4d,
+  --success-active: #77e06e,
+  --success-light: #e5ffe3,
+  --success-inverse: #000,
+  // danger
+  --danger: #fe7375,
+  --danger-active: #fc8182,
+  --danger-light: #ffecec,
+  --danger-inverse: #fff,
+
+  // contextual
+  --root-background: #fff,
+  --root-color: #000,
+);
+
+$dark: (
+  --primary: #7f6b38,
+  --primary-active: #ffe5a1,
+  --primary-light: #fff3d4,
+  --primary-inverse: #000,
+  // secondary
+  --secondary: #fe7375,
+  --secondary-active: #fc8182,
+  --secondary-light: #ffecec,
+  --secondary-inverse: #fff,
+  // success
+  --success: #58dd4d,
+  --success-active: #77e06e,
+  --success-light: #e5ffe3,
+  --success-inverse: #000,
+  // danger
+  --danger: #fe7375,
+  --danger-active: #fc8182,
+  --danger-light: #ffecec,
+  --danger-inverse: #fff,
+
+  // contextual
+  --root-background: #000,
+  --root-color: #fff,
+);

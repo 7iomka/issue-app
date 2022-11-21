@@ -1,0 +1,91 @@
+@import "~swiper/scss";
+@import "~swiper/scss/navigation";
+@import "~swiper/scss/pagination";
+@import "~swiper/scss/autoplay";
+@import "~swiper/scss/effect-fade";
+@import "~swiper/scss/free-mode";
+@import "~swiper/scss/a11y";
+
+// Customize here
+:root {
+  --swiper-theme-color: var(--primary);
+  --swiper-navigation-size: 36px;
+  --swiper-navigation-color: #000;
+  --swiper-pagination-color: var(--primary);
+  --swiper-pagination-bullet-horizontal-gap: 3px;
+  --swiper-pagination-bullet-width: 9px;
+  --swiper-pagination-bullet-height: 9px;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-inactive-color: #efefef;
+  // custom
+  --swiper-navigation-background-color: rgba(256, 256, 256, 0.56);
+  --swiper-navigation-hover-background-color: #fff;
+  --swiper-navigation-active-background-color: var(--primary);
+  --swiper-navigation-icon-size: 20px;
+  --swiper-navigation-sm-size: 30px;
+  --swiper-navigation-sm-icon-size: 16px;
+  --swiper-pagination-size: 12px;
+}
+
+.swiper {
+  min-height: var(--swiper-navigation-size);
+}
+
+// Swiper navigation
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: var(--swiper-navigation-background-color);
+  width: var(--swiper-navigation-size);
+  height: var(--swiper-navigation-size);
+  border-radius: 50%;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    background-color: var(--swiper-navigation-hover-background-color);
+    box-shadow: var(--shadow-md);
+  }
+  &:active {
+    background-color: var(--swiper-navigation-active-background-color);
+  }
+
+  // icon
+  &::after {
+    font-size: var(--swiper-navigation-icon-size);
+  }
+}
+
+.swiper-button-prev {
+  left: 0;
+
+  &::after {
+    text-indent: -0.12em; // fix visual center
+  }
+}
+
+.swiper-button-next {
+  right: 0;
+
+  &::after {
+    text-indent: 0.12em; // fix visual center
+  }
+}
+// Swiper pagination
+.swiper-pagination {
+  pointer-events: none;
+  > * {
+    pointer-events: all;
+  }
+}
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 0;
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  height: var(--swiper-pagination-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

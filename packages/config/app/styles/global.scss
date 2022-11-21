@@ -1,0 +1,124 @@
+// @use "./themes/common.vars.scss" as common;
+// @use "./themes/default.vars.scss" as defaultTheme;
+// @use "./themes/custom.vars.scss" as customTheme;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Note: Add to base layer only css-variables declarations.
+ * For rest of global styles use `app-global-styles.tsx`
+ */
+
+@layer base {
+  .compensate-for-scrollbar {
+    padding-right: var(--removed-scroll-width, 0px);
+  }
+
+  /* Change Autocomplete styles in Chrome*/
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #fff9ea inset; // color hardcoded now
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  // .color-scheme-dark {}
+
+  // Themes with default (light) and dark color schemes support
+  // We support custom `.color-scheme-light` selector
+  // Use it to force the color scheme
+
+  // Default theme
+  // :root,
+  // [data-theme="default"] {
+  //   &,
+  //   .color-scheme-light {
+  //     @each $var, $val in defaultTheme.$light {
+  //       #{$var}: $val;
+  //       #{$var + '-rgb'}: hexToRGB($val);
+  //     }
+  //   }
+
+  //   // &.color-scheme-dark,
+  //   // .color-scheme-dark {
+  //   //   @each $var, $val in defaultTheme.$dark {
+  //   //     #{$var}: $val;
+  //   //     #{$var + '-rgb'}: hexToRGB($val);
+  //   //   }
+  //   // }
+  // }
+
+  // // Custom theme
+  // [data-theme="custom"] {
+  //   &,
+  //   .color-scheme-light {
+  //     @each $var, $val in customTheme.$light {
+  //       #{$var}: $val;
+  //       #{$var + '-rgb'}: hexToRGB($val);
+  //     }
+  //   }
+
+  //   &.color-scheme-dark,
+  //   .color-scheme-dark {
+  //     @each $var, $val in customTheme.$dark {
+  //       #{$var}: $val;
+  //       #{$var + '-rgb'}: hexToRGB($val);
+  //     }
+  //   }
+  // }
+
+  // Grays colors pallette
+  // :root,
+  // .color-scheme-light {
+  //   @each $var, $val in common.$graysOnLight {
+  //     #{'--gray-' + $var}: $val;
+  //     #{'--gray-' + $var + '-rgb'}: hexToRGB($val);
+  //   }
+  // }
+
+  // .color-scheme-dark {
+  //   @each $var, $val in common.$graysOnDark {
+  //     #{'--gray-' + $var}: $val;
+  //     #{'--gray-' + $var + '-rgb'}: hexToRGB($val);
+  //   }
+  // }
+
+  // Variables that use theme variables (contextual) and others
+  // :root {
+  //   // typography
+  //   --font-primary: Acrom, Helvetica, sans-serif;
+  //   --font-serif: georgia, "Times New Roman", times, serif;
+  //   // body
+  //   --body-bg: var(--root-background);
+  //   --body-color: var(--root-color);
+  //   --body-font-family: var(--font-primary);
+  //   --body-font-size: 0.875rem; // 14px
+  //   --body-font-weight: 400;
+  //   --body-line-height: normal;
+  //   // font-sizes
+  //   --font-size-xs: 0.625rem; // 10px
+  //   --line-height-for-xs: 1.4; // 1.4
+  //   --font-size-sm: 0.75rem; // 12px
+  //   --line-height-for-sm: 1.4; // 1.4
+  //   --font-size-base: var(--body-font-size);
+  //   --line-height-for-base: var(--body-line-height);
+  // }
+}
+
+// Global keyframes
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

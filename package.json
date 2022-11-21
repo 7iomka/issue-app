@@ -1,0 +1,71 @@
+{
+  "name": "steklo24",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/store",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "dev-clean": "turbo run dev-clean",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "start": "turbo run start",
+    "api": "turbo run api",
+    "dev-shapes": "turbo run dev-shapes",
+    "build-shapes": "turbo run build-shapes",
+    "prepare": "husky install",
+    "storybook": "turbo run storybook",
+    "build-storybook": "turbo run build-storybook",
+    "ensure-local-packages-syncpack": "syncpack fix-mismatches --workspace -p -d --source package.json --source apps/*/package.json --source packages/*/package.json",
+    "killm": "npx npkill",
+    "debug-deps": "depcruise -c .dependency-cruiser.js apps/store",
+    "find-cycle": "npx madge --circular --warning --extensions ts,tsx ./"
+  },
+  "devDependencies": {
+    "dependency-cruiser": "latest",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.6.2",
+    "tslib": "latest",
+    "turbo": "^1.3.1"
+  },
+  "lint-staged": {
+    "apps/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "packages/ui/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "description": "This is an official Yarn v1 starter turborepo.",
+  "main": ".prettierrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/zahar_msk/steklo24.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/zahar_msk/steklo24/issues"
+  },
+  "homepage": "https://gitlab.com/zahar_msk/steklo24#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.16.0"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "effector-react": "^22.3.4"
+  },
+  "packageManager": "yarn@3.2.4"
+}

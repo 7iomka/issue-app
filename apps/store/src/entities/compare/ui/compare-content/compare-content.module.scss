@@ -1,0 +1,187 @@
+.root {
+  position: relative;
+}
+
+.removeBtn {
+  position: absolute;
+  z-index: 3;
+  background-color: var(--gray-500);
+  color: #fff;
+  border-radius: 50%;
+  top: -9px;
+
+  &:hover {
+    transform: rotate(180deg) scale(1.2);
+    background-color: var(--danger);
+  }
+}
+
+.removeBtnLeft {
+  left: calc(50% - 9px);
+  @include media(">=lg") {
+    left: calc(31% + 20px + (100% - 31% - 20px - 30px) / 2 - 9px);
+  }
+
+  &:hover ~ * [data-left-cell] {
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+}
+
+.removeBtnRight {
+  right: -9px;
+
+  &:hover ~ * [data-right-cell] {
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+}
+
+.compareRow {
+  border-top: 1px solid rgba(var(--root-color-rgb), 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: 20px;
+  @include media(">=lg") {
+    flex-direction: row;
+  }
+}
+
+.compareRowName {
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: -15px;
+  font-weight: 700;
+  line-height: 1.167;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--root-background);
+  color: var(--gray-700);
+  font-size: var(--font-size-sm);
+
+  @include media(">=lg") {
+    text-align: left;
+    align-items: flex-start;
+    flex: 0 0 31%;
+    max-width: 31%;
+    background-color: transparent;
+    color: inherit;
+    padding: 15px 0;
+    min-height: 60px;
+    opacity: 0.9;
+  }
+}
+
+.compareRowContent {
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.compareHeading.compareRow {
+  border-top: 0;
+}
+
+.compareHeading .compareRowName {
+  @include media("<lg") {
+    display: none;
+  }
+}
+
+.compareCells {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  min-width: 0;
+  @include media(">=sm") {
+    column-gap: 30px;
+  }
+}
+.compareCell {
+  width: 100%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  line-height: 1.167;
+  text-transform: uppercase;
+  padding: 15px 10px;
+  min-height: 60px;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: opacity, filter;
+
+  @include media(">=sm") {
+    flex-basis: calc(50% - 15px);
+    max-width: calc(50% - 15px);
+  }
+
+  &:only-of-type {
+    @include media("<lg") {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.compareHeading .compareCell {
+  padding: 20px 0;
+  font-weight: normal;
+  line-height: inherit;
+  text-transform: none;
+
+  @include media(">=sm") {
+    padding: 20px 25px;
+  }
+}
+
+.decorativeRow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+  border-top: 0;
+}
+
+.decorativeRowName {
+  display: none;
+  @include media(">=lg") {
+    display: block;
+  }
+}
+
+.decorativeRowContent {
+  position: relative;
+  height: 100%;
+}
+
+.decorativeCells {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  max-width: inherit;
+  @include media("<lg") {
+    column-gap: 0;
+  }
+}
+
+.decorativeCell {
+  height: 100%;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  @include media("<lg") {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}

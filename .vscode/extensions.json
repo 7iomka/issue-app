@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mishannn.vscode-file-suggest",
+    "mrmlnc.vscode-scss",
+    "liuyang.quick-create"
+    // "orta.vscode-jest"
+  ]
+}

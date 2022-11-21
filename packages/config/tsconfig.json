@@ -1,0 +1,13 @@
+{
+  "extends": "../config/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@steklo24/*": ["../../apps/*", "../../packages/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["node_modules", ".turbo"]
+}

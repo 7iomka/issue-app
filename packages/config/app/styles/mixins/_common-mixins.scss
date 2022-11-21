@@ -1,0 +1,252 @@
+@use "sass:math";
+
+/*=============================================
+=            Bem mixins            =
+=============================================*/
+
+@mixin apply-to($block) {
+  @at-root #{$block} {
+    @content;
+  }
+}
+
+@mixin el($name) {
+  @at-root #{&}__#{$name} {
+    @content;
+  }
+}
+
+@mixin mod($name, $context: &, $this: false) {
+  @if ($this == true) {
+    @at-root #{$context}--#{$name} & {
+      @content;
+    }
+  } @else {
+    @at-root #{$context}--#{$name} {
+      @content;
+    }
+  }
+}
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+/*=====  End of Bem mixins  ======*/
+
+/**
+* Placeholder
+*/
+@mixin placeholder-content($color) {
+  @if $color {
+    color: $color;
+  } @else {
+    @content;
+  }
+}
+
+@mixin placeholder($color) {
+  // Chrome, Firefox, Opera, Safari 10.1+
+  @include optional-at-root("::placeholder") {
+    @include placeholder-content($color);
+  }
+  @include optional-at-root("::-webkit-input-placeholder") {
+    @include placeholder-content($color);
+  }
+
+  @include optional-at-root(":-moz-placeholder") {
+    @include placeholder-content($color);
+  }
+
+  @include optional-at-root("::-moz-placeholder") {
+    @include placeholder-content($color);
+  }
+
+  @include optional-at-root(":-ms-input-placeholder") {
+    @include placeholder-content($color);
+  }
+}
+
+/*=============================================
+=            Em (calculate your value in rem relative to font-size            =
+=============================================*/
+
+// list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+@function em-separator($list) {
+  @if function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
+
+  $test-list: ();
+  @each $item in $list {
+    $test-list: append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
+}
+
+@function em($values...) {
+  $context: nth($values, length($values));
+  $result: ();
+  $separator: em-separator($values);
+
+  @for $i from 1 through length($values) - 1 {
+    $value: nth($values, $i);
+    @if type-of($value) == "number" and (unit($value) == "px" or unit($value) == "") {
+      $result: append($result, math.div($value, $context) * 1em, $separator);
+    } @else if type-of($value) == "list" {
+      $_v: append($value, $context);
+      $result: append($result, em($_v...), $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+// @param $input
+//   @desc The styles map or list (without units)
+//   @type map
+// @param $context
+//   @desc Context font-size value (without units)
+//   @type String
+@mixin em($properties, $context) {
+  @each $property in map-keys($properties) {
+    $_v: append(map-get($properties, $property), $context);
+    #{$property}: em($_v...);
+  }
+}
+
+/*=====  End of Em (calculate your value in rem relative to font-size  ======*/
+
+//  Quantity Query
+//  Example:
+//  ol li {
+//     @include qq(from 3)     { /* styling if the list has 3 or more items */ }
+//     @include qq(to 5)       { /* styling if the list has 5 or less items */ }
+//     @include qq(from 3 to 5){ /* styling if the list has between 3 and 5 items */ }
+//  }
+//
+@mixin qq($query) {
+  //    find to and from index in query
+  $at-least: index($query, from);
+  $at-most: index($query, to);
+
+  //    loop through selectors to find the last selector of each part
+  //    the "alphabet" loop is just a simple way to listify selectors
+  //    (if the selector has more than 26 parts – you're on your own)
+  @each $selector in & {
+    $list: ();
+    @each $a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $l, $m, $n, $o, $p, $q, $r, $s, $t, $u, $v, $w,
+      $x, $y, $z in $selector
+    {
+      $list: append(
+        $list,
+        $a $b $c $d $e $f $g $h $i $j $k $l $m $n $o $p $q $r $s $t $u $v $w $x $y $z
+      );
+    }
+    $last: nth($list, length($list));
+
+    //    print nth selectors
+    @if $at-least and $at-most {
+      $min: nth($query, min($at-least, $at-most) + 1);
+      $max: nth($query, max($at-least, $at-most) + 1);
+      &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child,
+      &:nth-last-child(n + #{$min}):nth-last-child(-n + #{$max}):first-child ~ #{$last} {
+        @content;
+      }
+    } @else if $at-least {
+      $min: nth($query, $at-least + 1);
+      &:nth-last-child(n + #{$min}),
+      &:nth-last-child(n + #{$min}) ~ #{$last} {
+        @content;
+      }
+    } @else if $at-most {
+      $max: nth($query, $at-most + 1);
+      &:nth-last-child(-n + #{$max}):first-child,
+      &:nth-last-child(-n + #{$max}):first-child ~ #{$last} {
+        @content;
+      }
+    }
+  }
+}
+
+//
+// Attr
+//
+
+@mixin attr($attr, $value, $important: "") {
+  @if $value != null {
+    #{$attr}: #{$value} #{$important};
+  }
+}
+
+// Media of at most the maximum and minimum breakpoint widths. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint.
+
+@function breakpoint-min($name, $breakpoints: $gridBreakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $gridBreakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-direction($direction, $name, $breakpoints: $gridBreakpoints) {
+  @if $direction == up {
+    $min: breakpoint-min($name, $breakpoints);
+
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  } @else if $direction == down {
+    $max: breakpoint-max($name, $breakpoints);
+
+    @if $max {
+      @media (max-width: $max) {
+        @content;
+      }
+    }
+  }
+}
+
+//
+// Browsers
+//
+
+@mixin for-edge {
+  // Microsoft Edge
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+// For IE 10+ and Edge 16+
+@mixin forIeAndEdge() {
+  /* IE10+ */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+
+  /* Edge 16+ */
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}

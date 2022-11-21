@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1149.6 737.7" enable-background="new 0 0 1149.6 737.7" xml:space="preserve">
+<g id="Слой_2_1_" onload="edge">
+	<g id="Слой_3" onload="lineGeneral">
+		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="66" y1="47.6" x2="349.4" y2="47.6"/>
+	</g>
+	<g id="Слой_4" onload="lineDown" opacity="0">
+		
+			<line fill="none" stroke="#17C6FC" stroke-width="11" stroke-linecap="round" stroke-miterlimit="10" x1="66" y1="47.6" x2="349.4" y2="47.6"/>
+	</g>
+	<g id="Слой_5" onload="circleDown0" opacity="0">
+		<circle fill="#70F9AE" cx="67.3" cy="47.6" r="14.9"/>
+	</g>
+	<g id="Слой_5__x28_копия_x29_" onload="circleDown1" opacity="0">
+		<circle fill="#70F9AE" cx="349.4" cy="47.6" r="16.1"/>
+	</g>
+</g>
+<g id="Слой_2_2_" onload="cursorHole">
+	<g>
+		<circle fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="2.1157,4.2313" cx="74.1" cy="103.7" r="8.1"/>
+	</g>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.25" stroke-miterlimit="10" stroke-dasharray="2,4,1,4" x1="102.6" y1="103.7" x2="46.5" y2="103.7"/>
+	
+		<line fill="none" stroke="#000000" stroke-width="0.25" stroke-miterlimit="10" stroke-dasharray="2,4,1,4" x1="74.1" y1="132.2" x2="74.1" y2="76"/>
+</g>
+<g id="Слой_3_1_" onload="hole">
+	
+		<line fill="none" stroke="#2EFFEF" stroke-width="21" stroke-linecap="round" stroke-miterlimit="10" x1="150.6" y1="97.5" x2="150.6" y2="97.5"/>
+	<path fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" d="M150.4,105.8c-4.6,0-8.3-3.7-8.3-8.3
+		c0-4.6,3.7-8.3,8.3-8.3"/>
+	<path fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" d="M150.4,89.2c5.6,0,8.7,3.7,8.7,8.3
+		c0,4.6-4.1,8.3-8.7,8.3"/>
+</g>
+<g id="Слой_2_3_" onload="arrow">
+	<g onload="arrow">
+		<g>
+			<polygon points="26.7,18.7 36.7,22.8 34.3,18.7 36.7,14.6 			"/>
+		</g>
+	</g>
+</g>
+<g id="Слой_2_4_" onload="close">
+	<circle fill="#8E3A3A" fill-opacity="0" cx="430.3" cy="76.7" r="19"/>
+	<circle fill="none" stroke="#AF3838" stroke-width="2" stroke-miterlimit="10" cx="430.3" cy="76.7" r="19"/>
+	<line fill="none" stroke="#AF3838" stroke-width="2" stroke-miterlimit="10" x1="419.8" y1="66.2" x2="440.8" y2="87.2"/>
+	<line fill="none" stroke="#AF3838" stroke-width="2" stroke-miterlimit="10" x1="440.7" y1="66.2" x2="420.5" y2="86.4"/>
+</g>
+<g id="Слой_2_5_" onload="virtualConroll">
+	<g id="Слой_3_2_" onload="joystik">
+		<g id="Слой_4__x28_копия_x29_" onload="up">
+			<polygon fill="#B0FFD2" stroke="#000000" stroke-miterlimit="10" points="452.2,578.3 490.6,545.5 529,578.3 			"/>
+		</g>
+		<g id="Слой_4_1_" onload="left">
+			<polygon fill="#B0FFD2" stroke="#000000" stroke-miterlimit="10" points="448.3,658 415.5,619.6 448.3,581.2 			"/>
+		</g>
+		<g id="Слой_4_копия_2" onload="down">
+			<polygon fill="#B0FFD2" stroke="#000000" stroke-miterlimit="10" points="528.7,662.5 490.3,695.2 451.9,662.5 			"/>
+		</g>
+		<g id="Слой_4_копия_3" onload="reight">
+			<polygon fill="#B0FFD2" stroke="#000000" stroke-miterlimit="10" points="531.9,582 564.7,620.4 531.9,658.8 			"/>
+		</g>
+	</g>
+</g>
+<g id="Слой_2_6_" onload="light">
+	<g id="Слой_3_3_" onload="fill">
+		<rect x="305" y="204.9" fill="#CCCCCC" width="361" height="49"/>
+	</g>
+	<g id="Слой_4_2_" onload="type">
+		<g id="Слой_11_2_" onload="face">
+			<rect x="313" y="208.3" fill="none" width="46" height="46"/>
+			<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="335.9" cy="229.8" r="9.3"/>
+			<g id="Слой_6_1_">
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="317.3" y1="229.8" x2="324.5" y2="229.8"/>
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="347.2" y1="230.4" x2="354.4" y2="230.4"/>
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="335.9" y1="249.1" x2="335.9" y2="241.2"/>
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="335.9" y1="218.6" x2="335.9" y2="210.7"/>
+			</g>
+			<g id="Слой_5_2_" onload="face">
+				<g id="Слой_6__x28_копия_x29__1_">
+					<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="322.7" y1="216.8" x2="327.8" y2="221.9"/>
+					<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="343.6" y1="238.3" x2="348.7" y2="243.3"/>
+					<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="322.4" y1="243.7" x2="328" y2="238.1"/>
+					<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="343.8" y1="222" x2="349.4" y2="216.3"/>
+				</g>
+			</g>
+		</g>
+		<g id="Слой_5__x28_копия_x29__1_" onload="contur">
+			
+				<rect x="359.1" y="206.2" transform="matrix(8.789397e-03 -1 1 8.789397e-03 149.5836 609.2546)" fill="none" width="46" height="46"/>
+			<path fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M372.4,232.2c0-5.1,4.2-9.3,9.4-9.3
+				c5.1,0,9.3,4.2,9.3,9.4L372.4,232.2z"/>
+			<g id="Слой_6_копия_2">
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="392.1" y1="228.3" x2="398.8" y2="225.7"/>
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="377.4" y1="221.5" x2="374.5" y2="214.1"/>
+			</g>
+			<g id="Слой_6__x28_копия2_x29_">
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="364.3" y1="224.6" x2="371" y2="227.5"/>
+				<path fill="#CCCCCC" stroke="#000000" stroke-width="2" stroke-miterlimit="10" d="M391.6,236.9"/>
+				<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="385.9" y1="221.7" x2="389" y2="214.4"/>
+			</g>
+		</g>
+		<g id="Слой_11" onload="face+contur">
+			<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="428.3" cy="227.4" r="9.3"/>
+			<g id="Слой_5__x28_копия_x29__2_" onload="contur">
+				
+					<rect x="405.5" y="206.1" transform="matrix(9.012791e-03 -1 1 9.012791e-03 195.5337 655.556)" fill="none" width="46" height="46"/>
+				<path fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" d="M419,227.4c0-5.1,4.1-9.3,9.3-9.3c5.1,0,9.3,4.2,9.3,9.4
+					L419,227.4z"/>
+				<g id="Слой_6_копия_2_1_">
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="438.4" y1="224.3" x2="445.1" y2="221.7"/>
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="423.6" y1="217.1" x2="420.7" y2="209.7"/>
+				</g>
+				<g id="Слой_6__x28_копия2_x29__1_">
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="410.6" y1="220.6" x2="417.3" y2="223.5"/>
+					<path fill="#CCCCCC" stroke="#000000" stroke-miterlimit="10" d="M437.9,232.9"/>
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="432.7" y1="216.9" x2="435.8" y2="209.6"/>
+				</g>
+			</g>
+			<g id="Слой_6">
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="409.7" y1="227.4" x2="416.9" y2="227.4"/>
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="439.6" y1="228" x2="446.8" y2="228"/>
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="428.3" y1="246.7" x2="428.3" y2="238.8"/>
+				<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="428.3" y1="216.2" x2="428.3" y2="208.3"/>
+			</g>
+			<g id="Слой_5_1_" onload="face">
+				<g id="Слой_6__x28_копия_x29_">
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="415.1" y1="214.4" x2="420.2" y2="219.5"/>
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="436" y1="235.9" x2="441.1" y2="240.9"/>
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="414.8" y1="241.3" x2="420.4" y2="235.7"/>
+					<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="436.2" y1="219.6" x2="441.8" y2="213.9"/>
+				</g>
+			</g>
+		</g>
+		<g id="Слой_11_1_" onload="none">
+			<rect x="481.8" y="208.6" fill="none" width="47.7" height="38.4"/>
+		</g>
+	</g>
+</g>
+<g id="Слой_2" onload="backgroundFigure">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="757.3613" y1="368.85" x2="681.6068" y2="293.0955">
+		<stop  offset="0" style="stop-color:#525252"/>
+		<stop  offset="1.273680e-02" style="stop-color:#585858"/>
+		<stop  offset="0.1258" style="stop-color:#8B8B8B"/>
+		<stop  offset="0.2323" style="stop-color:#B3B3B3"/>
+		<stop  offset="0.3292" style="stop-color:#CFCFCF"/>
+		<stop  offset="0.4132" style="stop-color:#E1E1E1"/>
+		<stop  offset="0.4749" style="stop-color:#E7E7E7"/>
+		<stop  offset="0.5548" style="stop-color:#D9D9D9"/>
+		<stop  offset="0.7068" style="stop-color:#B3B3B3"/>
+		<stop  offset="0.9135" style="stop-color:#767676"/>
+		<stop  offset="1" style="stop-color:#5B5B5B"/>
+	</linearGradient>
+	<rect x="681.6" y="293.1" fill="url(#SVGID_1_)" stroke="#000000" stroke-miterlimit="10" width="75.8" height="75.8"/>
+</g>
+</svg>

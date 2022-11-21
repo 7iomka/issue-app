@@ -1,0 +1,10 @@
+.c-map-modal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &.fancybox__content,
+  .fancybox__content {
+    padding: 0;
+  }
+}

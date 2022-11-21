@@ -1,0 +1,585 @@
+@use 'sass:math';
+/*=============================================
+=            Utility mixins            =
+=============================================*/
+
+// Grid mixins
+// @import "../grid/functions";
+// @import "../grid/variables";
+
+// @import "../grid/mixins/breakpoints";
+// @import "../grid/mixins/grid-framework";
+// @import "../grid/mixins/grid-framework.custom";
+// @import "../grid/mixins/grid";
+
+// Add Size
+// Shorthand for adding width and height dimensions to an element. If you only
+// pass in a width, the height will be set to equal the width and create a
+// square. If either the width or height are unit-less, it defaults to pixels.
+// @param $width
+//   @type unit (number, pixel, percentage)
+// @param $height
+//   @type unit (number, pixel, percentage, false)
+//   @default false -> $width
+
+@mixin add-size($width, $height: false) {
+  @if ($width != auto) {
+    @if ($width != none) {
+      @if unitless($width) {
+        $width: 1px * $width;
+      }
+    }
+  }
+  @if ($height != auto) {
+    @if ($height != none) {
+      @if ($height != false) {
+        @if unitless($height) {
+          $height: 1px * $height;
+        }
+      } @else {
+        $height: $width;
+      }
+    }
+  }
+  width: $width;
+  height: $height;
+}
+
+// Vertical Center
+// Centers an element vertically within its parent. Parent element may need to
+// have transform-style set to `preserve-3d` to prevent half pixel bluring.
+// @param $percent
+//   @type unit (percentage)
+//   @default 50%
+@mixin add-vertical-center($percent: 50%) {
+  position: relative;
+  top: $percent;
+  transform: translateY(-$percent);
+}
+
+// Scrollable
+// Makes touch devices use momentum-based scrolling for the given element.
+@mixin add-scrollable() {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  transition: top linear 0.2s, bottom linear 0.2s;
+}
+
+// Make Triangle
+// Creates the base styles for creating CSS triangles.
+@mixin make-triangle() {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+}
+
+// Add Triangle Styles
+// Uses the "0x0" element with borders trick to draw arrow size, color and direction.
+// @param $size
+//   @type unit (pixel, em, rem)
+// @param $color
+//   @type color
+// @param $direction
+//   @desc The direction that the triangle will point.
+//   @type string
+//   @options 'up', 'right', 'down', 'left', 'up-right', 'up-left', 'down-right', 'down-left'
+@mixin add-triangle-styles($size, $color, $direction) {
+  border-color: transparent;
+  @if ($direction == 'up') {
+    border-width: 0 $size $size $size;
+    border-bottom-color: $color;
+  } @else if ($direction == 'right') {
+    border-width: $size 0 $size $size;
+    border-left-color: $color;
+  } @else if ($direction == 'down') {
+    border-width: $size $size 0 $size;
+    border-top-color: $color;
+  } @else if ($direction == 'left') {
+    border-width: $size $size $size 0;
+    border-right-color: $color;
+  } @else if ($direction == 'up right' or $direction == 'right up') {
+    border-width: $size;
+    border-top-color: $color;
+    border-right-color: $color;
+  } @else if ($direction == 'up left' or $direction == 'left up') {
+    border-width: $size;
+    border-top-color: $color;
+    border-left-color: $color;
+  } @else if ($direction == 'down right' or $direction == 'right down') {
+    border-width: $size;
+    border-bottom-color: $color;
+    border-right-color: $color;
+  } @else if ($direction == 'down left' or $direction == 'left down') {
+    border-width: $size;
+    border-bottom-color: $color;
+    border-left-color: $color;
+  } @else {
+    @warn "#{$direction} is not a valid direction for @mixin triangle";
+  }
+}
+
+// Add Truncate Text
+// Truncates text with an ellipsis. Element this is applied to must be block
+// or inline-block.
+// @param $display
+//   @type display property (block, inline-block)
+//   @default block
+@mixin add-text-truncate($display: block) {
+  @if ($display == inline-block or $display == block) {
+    display: $display;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Add Hide text
+// Hides text from an element. This is most commonly used as an image
+// replacement technique for hiding text in an element to reveal a
+// background image.
+@mixin add-text-hide() {
+  font-size: 0;
+  line-height: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin border-radius-oveflow-fix {
+  // /* this fixes the overflow:hidden in Chrome/Opera */
+  // -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
+}
+
+@mixin optical-center-offset($width, $height, $prop: margin-left, $unit: rem) {
+  // r = d/2
+  $radius: sqrt(pow($width, 2) + pow($height, 2)) * 0.5;
+  $offset: $width * 0.5 - $radius * 0.5;
+  $valueInPx: if($unit == rem, $offset * 10, $offset);
+  $roundedValue: if(round($valueInPx) == 0, floor($valueInPx), round($valueInPx));
+  $finalValue: if($unit == rem, $roundedValue * 0.1, $roundedValue);
+  #{$prop}: ($finalValue * 1#{$unit});
+}
+
+/*=====  End of Utility mixins  ======*/
+
+/*=============================================
+=            Animations mixins            =
+=============================================*/
+
+// @mixin if-anim-enabled($sr: false) {
+//   @if $anim-enabled {
+//     @if $sr {
+//       html:not(.sr):not(.is-anim-ready) & {
+//         @include media(">=#{$anim-breakpoint}") {
+//           visibility: visible;
+//         }
+//       }
+//       html:not(.sr) & {
+//         @include media(">=#{$anim-breakpoint}") {
+//           visibility: hidden;
+//         }
+//       }
+//       html.sr & {
+//         @include media(">=#{$anim-breakpoint}") {
+//           @content;
+//         }
+//       }
+//     } @else {
+//       html:not(.is-anim-ready) & {
+//         @include media(">=#{$anim-breakpoint}") {
+//           visibility: visible;
+//         }
+//       }
+//       html.is-anim-ready & {
+//         @include media(">=#{$anim-breakpoint}") {
+//           @content;
+//         }
+//       }
+//     }
+//   }
+// }
+
+/*=====  End of Animations mixins  ======*/
+
+// CSS gateway (шлюз)
+@mixin gateway($start, $end, $min: 576, $max: 960, $type: font-size) {
+  $m: math.div($start - $end, $max - $min); //0,09375
+  $b: $end - $m * $min; // 30
+  $y: $m + $b;
+
+  @media (min-width: #{$min}px) {
+    #{$type}: calc(#{$m} * 100vw + #{$b} * #{(1px)});
+  }
+
+  @media (max-width: #{$min - 1}px) {
+    #{$type}: calc(#{$end} * #{(1px)});
+  }
+
+  @media (min-width: #{$max}px) {
+    #{$type}: calc(#{$start} * #{(1px)});
+  }
+}
+
+// Visually hidden
+@mixin visually-hidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+// Text mixins
+@mixin text-truncate() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin text-hide() {
+  border: 0;
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+@mixin text-border-underline {
+  text-decoration: none;
+  border-bottom: 0.1rem solid;
+  &:hover {
+    text-decoration: none;
+    border-color: currentColor;
+    color: darken($color-primary, 10%);
+  }
+}
+
+/*=============================================
+  Mixin for Min/Max content (crossbrowser)
+=  @include intrinsic(width, max-content);            =
+=============================================*/
+
+@mixin intrinsic($property, $value) {
+  @if $value == fit-content or $value == min-content or $value == max-content {
+    #{$property}: intrinsic; /* Safari/WebKit uses a non-standard name */
+    #{$property}: -moz-#{$value}; /* Firefox/Gecko */
+    #{$property}: -webkit-#{$value}; /* Old Chrome */
+    #{$property}: $value;
+  } @else if $value == fill-available or $value == available {
+    #{$property}: -webkit-fill-available;
+    #{$property}: -moz-available;
+    #{$property}: fill-available;
+  } @else {
+    #{$property}: $value;
+  }
+}
+
+/*=============================================
+=            Diagonal line (line-through            =
+=============================================*/
+
+@mixin diagonal-line($color) {
+  $color: str-slice('#{$color}', 2, str-length('#{$color}'));
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3e%3cline x1='0' y1='100' x2='100' y2='0' stroke-width='6' stroke='%23#{$color}'/%3e%3c/svg%3e");
+  // Make it work in Firefox
+  background-size: 100% 100%;
+}
+
+/*=====  End of Diagonal line (line-through  ======*/
+
+/*=============================================
+=            Make N columns with flexbox            =
+=   url: https://www.fourkitchens.com/blog/article/responsive-multi-column-lists-flexbox/ =
+=============================================*/
+/**
+  // @param $container-selector
+  //   @desc selector of container element
+  //   @type string
+  //   @default '.items'
+
+  // @param $item-selector
+  //   @desc selector of child selector
+  //   @type string
+  //   @default '.items > .item'
+
+**/
+
+// @param $min-width
+//   @desc minimal width of one column
+//   @type string
+//   @default null
+
+// @param $gutter
+//   @desc Space between columns
+//   @type string
+//   @default 1.5rem
+
+// @param $last-equal
+/**
+  @desc That Last Row
+    One interesting side effect of this is that when the number of items isn’t evenly divisible by the number of columns, the width of the items in the last row doesn’t match the widths of all the previous rows:
+    This is because flexbox expands the columns in that row so combined they fill 100% of the width. Some people may enjoy this look, but it can look like a bug (especially if the design doesn’t include an item background)
+*/
+//   @type Boolean
+//   @default 1.5rem
+
+// @param $max-cols
+//   @desc Maximum count of columns
+//   @type Number
+//   @default 2
+@mixin n-columns($min-width, $gutter: 15px, $last-equal: false, $max-cols: 2) {
+  $gutter-left: if(is-map($gutter), map-get($gutter, left), $gutter);
+  $gutter-top: if(is-map($gutter), map-get($gutter, top), $gutter);
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter-left;
+  margin-top: -$gutter-top;
+
+  & > * {
+    flex: 1 0 $min-width;
+    margin-left: $gutter-left;
+    margin-top: $gutter-top;
+
+    @if $last-equal {
+      @for $i from 2 through $max-cols {
+        $screen-width: ($min-width * $i)+ ($gutter-left * $i);
+        $column-width: math.div(100%, $i);
+        @media (min-width: $screen-width) {
+          max-width: calc(#{$column-width} - #{$gutter-left});
+        }
+      }
+
+      $column-width: math.div(100%, $max-cols);
+      @media (min-width: $min-width*$max-cols) {
+        min-width: calc(#{$column-width} - #{$gutter-left});
+      }
+    }
+  }
+}
+
+/*=====  End of Make N columns with flexbox  ======*/
+
+@mixin border-gradient-sec(
+  $border-gradient: linear-gradient(to bottom, #586a95 0%, #00001e 100%),
+  $bg-gradient: linear-gradient(to bottom, #17264a 0%, #00001e 100%),
+  $opacity: 1,
+  $border-radius: 5px
+) {
+  position: relative;
+  border-radius: $border-radius;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: $border-gradient;
+    border-radius: inherit;
+    opacity: $opacity;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    background-image: $bg-gradient;
+    border-radius: inherit;
+    opacity: $opacity;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/**
+ * Make text gradient with fallback of clean color text
+ * dir: left/top
+ */
+@mixin font-gradient(
+  $from,
+  $to,
+  $angle: 0deg,
+  $fallbackColor: $from,
+  $mirror: false,
+  $fromPosition: false,
+  $toPosition: false
+) {
+  color: $fallbackColor;
+  @if ($mirror == true) {
+    //noinspection CssReplaceWithShorthandSafely
+    background: -webkit-linear-gradient($angle, $from, $to, $from);
+    background-size: 200% 100%;
+    //noinspection CssReplaceWithShorthandSafely
+    background-position: 0 100%, 0 0;
+  } @else {
+    background: -webkit-linear-gradient(
+      $angle,
+      $from#{if($fromPosition, ' #{$fromPosition}', '')},
+      $to#{if($toPosition, ' #{$toPosition}', '')}
+    );
+  }
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin font-gradient-clear($clearBg: true, $clearColor: false) {
+  @if ($clearBg == true) {
+    background: none;
+  }
+  @if ($clearColor == true) {
+    color: initial;
+  }
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+}
+
+// Classic linear gradient
+@mixin linear-gradient($direction, $gradients...) {
+  background-color: nth($gradients, 1);
+  background-image: linear-gradient($direction, $gradients...);
+}
+
+@mixin apply-vertical-gradient($negative: false) {
+  @if $negative {
+    background-position: 0 100%;
+  } @else {
+    background-position: 0 0;
+  }
+
+  background-size: 100% 200%;
+  // background-color: transparent;
+  transition-property: background-position, box-shadow, filter, opacity, color, transform;
+
+  &:hover {
+    @if $negative {
+      background-position: 0 0;
+    } @else {
+      background-position: 0 100%;
+    }
+  }
+}
+
+@mixin apply-horizontal-gradient($negative: false) {
+  @if $negative {
+    background-position: 100% 0;
+  } @else {
+    background-position: 0 0;
+  }
+
+  background-size: 200% 100%;
+  // background-color: transparent;
+  transition-property: background-position, box-shadow, filter, opacity, color, transform;
+
+  &:hover {
+    @if $negative {
+      background-position: 0 0;
+    } @else {
+      background-position: 100% 0;
+    }
+  }
+}
+
+// Border gradient
+// Make border gradient without need twice block
+// @param $from
+//   @desc Start color
+//   @type string
+//   @default null
+
+// @param $to
+//   @desc End color
+//   @type string
+//   @default null
+
+// @param $width
+//   @desc Needed border width
+//   @type unit (pixel, em, rem)
+
+// @param $angle
+//   @desc Gradient direction
+//   @type number
+//   @default 0
+//   @options '0 deg (to top)', '90 deg (to right)', '180deg (to bottom)', '270deg (to left)'
+@mixin border-gradient($from, $to, $width, $angle: 90deg) {
+  border: 0;
+  background-image: // both needed for two parts
+    linear-gradient($angle, $from, $to, $from), linear-gradient($angle, $from, $to, $from);
+  background-repeat: no-repeat;
+  background-clip: border-box;
+
+  $_angle: strip-units($angle);
+  $_t: math.div($_angle, 90);
+  $isHorizontal: isEven($_t); // 0, 180, 360, ...
+
+  // Setup vertical gradient
+  @if $isHorizontal {
+    border-top: $width solid $from;
+    border-bottom: $width solid $to;
+    background-size: $width 200%;
+    background-position: 0 100%, 100% 0;
+  } @else {
+    border-left: $width solid $from;
+    border-right: $width solid $to;
+    background-size: 200% $width;
+    background-position: 0 100%, 0 0;
+    &:hover {
+      background-position: 100% 100%, 100% 0;
+      border-left: $width solid $to;
+      border-right: $width solid $from;
+    }
+  }
+}
+
+//
+// Fixes
+//
+@mixin fix-fixed-position-lags() {
+  // webkit hack for smooth font view on fixed positioned elements
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin fix-animation-lags() {
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+}
+
+//
+// Reset
+//
+@mixin button-reset() {
+  appearance: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin input-reset() {
+  border: 0;
+  background-color: transparent;
+  outline: none !important;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/*=====  End of Font-size responsive mixin  ======*/

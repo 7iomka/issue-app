@@ -1,0 +1,44 @@
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths(
+  $max-widths: $containerMaxWidths,
+  $breakpoints: $gridBreakpoints,
+  $without-gutter: null
+) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // See issue: https://medium.com/@joanxie/scoped-placeholder-selectors-in-scss-327c0b75babf
+      @at-root %responsive-container-#{$breakpoint} {
+        @if $without-gutter {
+          max-width: calc(#{$container-max-width} - var(--bs-gutter-x, 24px));
+        } @else {
+          max-width: $container-max-width;
+        }
+      }
+
+      // Extend each breakpoint which is smaller or equal to the current breakpoint
+      $extend-breakpoint: true;
+
+      @each $name, $width in $breakpoints {
+        @if ($extend-breakpoint) {
+          @extend %responsive-container-#{$breakpoint};
+
+          // Once the current breakpoint is reached, stop extending
+          @if ($breakpoint == $name) {
+            $extend-breakpoint: false;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-container-max-widths-without-gutter(
+  $max-widths: $containerMaxWidths,
+  $breakpoints: $gridBreakpoints
+) {
+  @include make-container-max-widths(
+    $max-widths: $max-widths,
+    $breakpoints: $breakpoints,
+    $without-gutter: true
+  );
+}

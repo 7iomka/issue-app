@@ -1,0 +1,14 @@
+.root {
+  align-self: center;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 6px 8px 6px 15px;
+}
+
+.input {
+  background-color: #fff;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  padding: 7px 11px;
+  width: 100%;
+}

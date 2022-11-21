@@ -1,0 +1,10 @@
+# Dependency directories
+/node_modules
+
+# NextJS Files
+/build
+/public/*
+/.next
+next-env.d.ts
+/src/shared/lib/nextjs-effector/*
+/src/shared/lib/effector-react-form/*

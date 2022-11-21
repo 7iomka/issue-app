@@ -1,0 +1,42 @@
+#nprogress {
+  --color: #007aff;
+  .bar {
+    background-color: var(--color);
+  }
+
+  .peg {
+    box-shadow: 0 0 10px var(--color), 0 0 5px var(--color);
+  }
+  .spinner {
+    @include media("<xl") {
+      top: 4px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+    @include media(">=xl") {
+      top: (76px / 2);
+      transform: translateY(-50%);
+
+      // sticky is only available on desktop
+      .has-header-sticky & {
+        top: (60px / 2);
+      }
+    }
+  }
+
+  .spinner-icon {
+    border-top-color: var(--color);
+    border-left-color: var(--color);
+
+    @include media("<xl") {
+      width: 10px;
+      height: 10px;
+      border-width: 1px;
+    }
+    @include media(">=xl") {
+      border: 1.5px;
+    }
+  }
+}

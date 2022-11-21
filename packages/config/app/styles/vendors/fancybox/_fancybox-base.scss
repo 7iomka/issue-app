@@ -1,0 +1,73 @@
+@import "~@fancyapps/ui/dist/fancybox";
+
+a[data-fancybox] img {
+  cursor: zoom-in;
+}
+
+.fancybox__container {
+  --fancybox-bg: rgba(24, 24, 27, 0.96);
+
+  --fancybox-thumbs-width: 60px;
+  --fancybox-thumbs-ratio: 1;
+
+  // --carousel-button-bg: rgba(97, 97, 97, 0.56);
+  --carousel-button-width: 40px;
+  --carousel-button-height: 40px;
+  // --carousel-button-svg-width: 18px;
+  // --carousel-button-svg-height: 18px;
+
+  // --carousel-button-svg-stroke-width: 2;
+}
+
+.fancybox__nav {
+  // --carousel-button-svg-width: 18px;
+  // --carousel-button-svg-height: 18px;
+}
+
+.fancybox__nav {
+  .carousel__button {
+    &.is-prev {
+      left: 20px;
+    }
+
+    &.is-next {
+      right: 20px;
+    }
+
+    &.is-close {
+      right: auto;
+      top: 20px;
+      left: 20px;
+    }
+  }
+}
+
+.fancybox__slide {
+  // padding: 8px 88px;
+}
+
+/* Thumbnails */
+.fancybox__thumbs .carousel__slide {
+  padding: 8px 8px 16px 8px;
+}
+
+.is-nav-selected::after {
+  display: none;
+}
+
+.fancybox__thumb {
+  border-radius: var(--radius-lg);
+  opacity: 0.4;
+
+  &:hover,
+  .is-nav-selected & {
+    border-radius: var(--radius-lg);
+    opacity: 1;
+  }
+
+  .is-nav-selected & {
+    &::after {
+      display: none;
+    }
+  }
+}

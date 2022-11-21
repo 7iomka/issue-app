@@ -1,0 +1,143 @@
+.LeadSlider {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  @include media(">=md") {
+    border: 0;
+  }
+}
+
+.LeadSliderCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include media(">=md") {
+    flex-direction: row;
+  }
+
+  &__media {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    user-select: none;
+
+    @include media(">=md") {
+      order: 1;
+      border-top-left-radius: 0;
+      border-top-right-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+      margin-left: 0;
+      height: 100%;
+    }
+  }
+
+  &__image_container {
+    position: relative;
+    height: 196px;
+
+    @include media(">=md") {
+      flex-direction: row;
+      height: 100%;
+      min-height: 265px;
+    }
+
+    &,
+    * {
+      border-radius: inherit;
+    }
+  }
+
+  &__meta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1;
+    padding: 20px 18px calc(40px + var(--swiper-navigation-size));
+    color: #fff;
+    @include media(">=xsm") {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    @include media("<md") {
+      flex-grow: 1;
+      min-height: 0;
+    }
+
+    @include media(">=md") {
+      flex-shrink: 0;
+      margin-top: 0;
+      width: calc(39.72% + 24px);
+      min-width: (290px + 24px);
+      padding: 24px 24px calc(35px + var(--swiper-pagination-size))
+        calc(var(--swiper-navigation-size) + 35px);
+    }
+
+    @include media(">=xl") {
+      width: 46.11%;
+      padding-right: 30px;
+    }
+  }
+
+  &__meta_bg_wrapper {
+    z-index: -1;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      @include media(">=md") {
+        background-color: rgba(0, 0, 0, 0.35);
+      }
+    }
+  }
+
+  &__meta_bg_img {
+    object-position: 25% 50%;
+    filter: blur(42px);
+    transform: scale(1.3);
+
+    @include media(">=md") {
+      filter: blur(22px);
+    }
+  }
+
+  &__title {
+  }
+
+  &__description {
+    margin-top: 11px;
+    white-space: pre-wrap;
+    font-size: var(--font-size-sm);
+  }
+
+  &__button {
+    margin-top: 18px;
+    @include media(">=md") {
+      margin-top: 24px;
+    }
+
+    &:hover {
+      color: #000;
+    }
+  }
+}

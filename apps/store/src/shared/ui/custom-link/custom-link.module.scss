@@ -1,0 +1,81 @@
+.root {
+  padding: 0;
+  height: auto;
+  min-height: 20px;
+  white-space: normal;
+  display: inline-block;
+  line-height: normal;
+
+  &.underline {
+    --line: currentColor;
+    --stroke-duration: 0.15s;
+    --stroke-easing: linear;
+    --stroke-delay: 0s;
+
+    &:hover {
+      --background-size: 0%;
+      --background-delay: 0s;
+      --stroke-dashoffset: 26;
+      --stroke-duration: 0.15s;
+      --stroke-easing: cubic-bezier(0.3, 1.5, 0.5, 1);
+      --stroke-delay: 0.0975s;
+    }
+
+    .content {
+      position: relative;
+    }
+
+    &:not(.has_chevron) {
+      &,
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.has_chevron {
+      &,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &.has_chevron .content {
+      display: inherit; // inline-block / inline
+      --link-chevron__width: 13px;
+      padding-right: var(--link-chevron__width);
+
+      > span {
+        background-image: linear-gradient(0deg, var(--line) 0%, var(--line) 100%);
+        background-position: 100% 100%;
+        background-repeat: no-repeat;
+        background-size: var(--background-size, 100%) 1px;
+        transition: background-size 0.2s linear var(--background-delay, 0.15s);
+        transform: translateZ(0);
+        height: 100%;
+        min-height: inherit;
+        // vertical-align: middle;
+        margin-right: calc(-1 * var(--link-chevron__width));
+      }
+
+      .chevron {
+        display: inline;
+        line-height: 1;
+        width: var(--link-chevron__width);
+        height: 100%;
+        min-height: inherit;
+        // min-height: 12px;
+        position: relative;
+        left: calc(var(--link-chevron__width) - 5px);
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        stroke: var(--line);
+        stroke-dasharray: 7.95 30;
+        stroke-dashoffset: var(--stroke-dashoffset, 46);
+        transition: stroke-dashoffset var(--stroke-duration, 0.15s) var(--stroke-easing, linear)
+          var(--stroke-delay, 0s);
+      }
+    }
+  }
+}

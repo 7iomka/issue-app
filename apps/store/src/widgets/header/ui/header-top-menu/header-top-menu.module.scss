@@ -1,0 +1,37 @@
+.root {
+  // NOTE: not use flex for wrapper or outerWrapper of PriorityNav
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 30px;
+}
+
+.item {
+  height: 100%;
+  & + & {
+    margin-left: 10px;
+  }
+}
+.link {
+  vertical-align: middle;
+  opacity: 0.8;
+  position: relative;
+  text-transform: uppercase;
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: var(--neutral-100);
+    border-radius: var(--radius-md);
+  }
+}

@@ -1,0 +1,11 @@
+// BaseLayout
+
+// common elements
+.CorePageWrapper {
+  height: 100%;
+}
+.CorePageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

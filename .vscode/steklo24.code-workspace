@@ -1,0 +1,178 @@
+{
+  "folders": [
+    {
+      "name": "ISSUE_APP_ROOT",
+      "path": "../"
+    },
+    {
+      "name": "@steklo24/store",
+      "path": "../apps/store"
+    },
+    {
+      "name": "@steklo24/utils",
+      "path": "../packages/utils"
+    },
+    {
+      "name": "@steklo24/config",
+      "path": "../packages/config"
+    },
+    {
+      "name": "@steklo24/types",
+      "path": "../packages/types"
+    },
+    {
+      "name": "@steklo24/hooks",
+      "path": "../packages/hooks"
+    },
+    {
+      "name": "@steklo24/icons",
+      "path": "../packages/icons"
+    },
+    {
+      "name": "@steklo24/shapes",
+      "path": "../packages/shapes"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      // not exclude node_modules
+      "node_modules/": false,
+      // store
+      "apps/store/[^tailwind]*": true,
+      "apps/store/*.json": true,
+      "apps/store/*.ts": true,
+      "apps/store/*.tsx": true,
+      // // ui
+      // "packages/ui/[^tailwind]*": true,
+      // "packages/ui/*.json": true,
+      // "packages/ui/*.ts": true,
+      // "packages/ui/*.tsx": true,
+      // utils
+      "packages/utils/": true,
+      // config
+      "packages/config/": true,
+      // types
+      "packages/types/": true,
+      // hooks
+      "packages/hooks/": true,
+      // shapes
+      "packages/shapes/": true,
+      // icons
+      "packages/icons/[^tailwind]*": true,
+      "packages/icons/*.json": true,
+      "packages/icons/*.ts": true,
+      "packages/icons/*.tsx": true
+    },
+    // Controls how suggestions are pre-selected when showing the suggest list
+    "editor.suggestSelection": "first", // first, none, recentlyUsed
+    "editor.suggest.showWords": false,
+    "editor.wordWrap": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 2, // optional
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // set by default
+    "[typescript]": {
+      // override if setted per-language
+      "editor.defaultFormatter": "esbenp.prettier-vscode" // "rvest.vs-code-prettier-eslint"
+    },
+    "eslint.lintTask.enable": true,
+    "eslint.format.enable": true,
+    "eslint.alwaysShowStatus": true,
+    // "eslint.workingDirectories": ["apps/*"],
+    // "eslint.validate": ["vue", "html", "javascript", "typescript", "javascriptreact", "typescriptreact"], // Uncomment when issue be resolved https://github.com/leoroese/turborepo-tutorial/issues/1
+    "editor.snippetSuggestions": "inline", // top
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.idea": true,
+      "**/.history": true,
+      "**/.history/**": true,
+      "**/.next/**": true
+    },
+    // Fix jest extension issue (if needed)
+    "jest.autoEnable": false,
+    "jest.disabledWorkspaceFolders": ["ROOT", "apps/store", "packages/ui"],
+    "autoimport.filesToScan": "**/*.{ts,tsx,js,jsx,scss,css}",
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+      "typescript": "typescriptreact"
+    },
+    "tailwindCSS.emmetCompletions": true,
+    "[ansible]": {
+      "gitlens.codeLens.scopes": ["document"]
+    },
+    "scss.scannerExclude": [
+      "**/.git",
+      "**/node_modules",
+      "**/.history",
+      "**/build",
+      "**/dist",
+      "**/.next",
+      "**/.turbo"
+    ],
+    "typescript.tsdk": "ROOT/node_modules/typescript/lib",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "terminal.integrated.shellIntegration.enabled": true,
+    "window.commandCenter": true
+    /* 
+      For now we use File Suggest instead, because p-i not support anything else then js,ts files autocompletion
+    */
+    /* Start: Uncomment this if you want to use path-intellisense (p-i) */
+    // "path-intellisense.autoSlashAfterDirectory": true,
+    // "path-intellisense.absolutePathToWorkspace": true, // if false - absolute disk path
+    // "typescript.suggest.paths": false,
+    // "javascript.suggest.paths": false,
+    // "node-module-intellisense.scanFileModules": false,
+    // "path-intellisense.mappings": {
+    //   "@": "${workspaceFolder}/src"
+    // },
+    /* End: Uncomment this if you want to use path-intellisense (p-i) */
+
+    /* Start: Uncomment this if you want to use createreactfoldercomponent extension (deprecated in favor of quickcreate) */
+    // "createreactfoldercomponent.templateLanguage": "TypeScript",
+    // "createreactfoldercomponent.typeScriptIndexTemplate": ["export * from './$COMPONENT_NAME';\n"],
+    // "createreactfoldercomponent.typeScriptComponentTemplate": [
+    //   "import { memo } from 'react';",
+    //   "import clsx from 'clsx';",
+    //   "",
+    //   "export interface COMPONENT_CAMELCASE_NAMEProps {className?: string;}",
+    //   "",
+    //   "export const COMPONENT_CAMELCASE_NAME = memo((props: COMPONENT_CAMELCASE_NAMEProps) => {",
+    //   "  const { className } = props;",
+    //   "  return (",
+    //   "    <div className={cx(className)}>",
+    //   "      {' '}",
+    //   "    </div>",
+    //   "  );",
+    //   "})",
+    //   "",
+    //   "COMPONENT_CAMELCASE_NAME.displayName = 'COMPONENT_CAMELCASE_NAME';\n"
+    // ],
+    // "createreactfoldercomponent.typeScriptStyledComponentTemplate": [
+    //   "import { memo } from 'react';",
+    //   "import clsx from 'clsx';",
+    //   "",
+    //   "import styles from './$STYLE_COMPONENT_FILENAME';",
+    //   "",
+    //   "export interface COMPONENT_CAMELCASE_NAMEProps {className?: string;}",
+    //   "",
+    //   "export const COMPONENT_CAMELCASE_NAME = memo((props: COMPONENT_CAMELCASE_NAMEProps) => {",
+    //   "  const { className } = props;",
+    //   "  return (",
+    //   "    <div className={cx(styles.COMPONENT_CAMELCASE_NAME, className)}>",
+    //   "      {' '}",
+    //   "    </div>",
+    //   "  );",
+    //   "})",
+    //   "",
+    //   "COMPONENT_CAMELCASE_NAME.displayName = 'COMPONENT_CAMELCASE_NAME';\n"
+    // ],
+    // "createreactfoldercomponent.javaScriptStyleFileNameTemplate": "$COMPONENT_NAME.module.scss",
+    // "createreactfoldercomponent.typeScriptStyleFileNameTemplate": "$COMPONENT_NAME.module.scss",
+    // "createreactfoldercomponent.javaScriptStyleTemplate": [".$COMPONENT_NAME {/*! keep */}"],
+    // "createreactfoldercomponent.typeScriptStyleTemplate": [".$COMPONENT_NAME {/*! keep */}"],
+    /* End: Uncomment this if you want to use createreactfoldercomponent extension */
+  }
+}

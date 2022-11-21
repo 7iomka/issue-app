@@ -1,0 +1,20 @@
+.root {
+  padding: 25px 20px 30px;
+  background-color: var(--neutral-100);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-lg);
+}
+
+.kvItem {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.8;
+}
+
+.kvItemKey {
+  opacity: 0.8;
+}
+
+.kvItemValue {
+  text-align: right;
+}

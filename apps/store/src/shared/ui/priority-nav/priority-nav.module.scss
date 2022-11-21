@@ -1,0 +1,27 @@
+.root {
+  position: relative;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.menu {
+  display: inline-block;
+  height: inherit;
+}
+
+.item {
+  display: inline-block;
+  vertical-align: middle;
+  height: inherit;
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.button:hover {
+  color: #999;
+}

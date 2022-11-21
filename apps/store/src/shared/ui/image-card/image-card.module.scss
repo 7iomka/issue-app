@@ -1,0 +1,87 @@
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.media {
+  position: relative;
+  // height: 272px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  // outline: transparent solid 2px;
+  outline-offset: 2px;
+  transition: 0.2s ease-out;
+  overflow: hidden;
+  z-index: 1; // safari fix
+
+  @include media(">=lg") {
+    height: 372px;
+  }
+}
+
+.imageContainer {
+  position: relative;
+  height: 100%;
+  will-change: transform;
+  transform: scale(1);
+  transition: var(--transition-duration-slow) var(--transition-easing-ease-out) transform;
+
+  @include media("<lg") {
+    padding-top: 100%;
+  }
+
+  &,
+  * {
+    border-radius: inherit;
+  }
+}
+
+.root[href]:hover .imageContainer {
+  transform: scale(1.1);
+}
+
+.meta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  z-index: 1;
+  border-radius: inherit;
+  margin: 15px 0;
+}
+
+.title {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-for-base);
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+
+  @include media(">=md") {
+    font-size: var(--font-size-xl);
+    line-height: 1.222;
+  }
+}
+
+.titleChevron {
+  display: none;
+}
+
+:global(.touch) .titleChevron {
+  display: block;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.description {
+  margin-top: 7px;
+  opacity: 0.9;
+  font-size: var(--font-size-sm);
+}
+
+a.root {
+  cursor: pointer;
+}

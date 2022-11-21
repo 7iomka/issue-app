@@ -1,0 +1,26 @@
+{
+  "name": "@steklo24/utils",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "postcss": "^8.4.14",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@react-aria/utils": "^3.13.1",
+    "@steklo24/types": "*",
+    "nanoid": "^3.3.4",
+    "react-merge-refs": "^2.0.1"
+  },
+  "peerDependencies": {
+    "effector": "^22.3.0",
+    "effector-react": "^22.3.3",
+    "postcss": "^8.4.14",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}

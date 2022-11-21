@@ -1,0 +1,26 @@
+.root {
+  @include media(">=xl") {
+    display: flex;
+  }
+}
+
+.aside {
+  display: none;
+  width: 250px;
+  flex-shrink: 0;
+  @include media(">=xl") {
+    display: block;
+  }
+
+  @include media(">=xxl") {
+    width: 300px;
+  }
+}
+
+.content {
+  @include media(">=xl") {
+    flex-grow: 1;
+    min-width: 0;
+    margin-left: 30px;
+  }
+}

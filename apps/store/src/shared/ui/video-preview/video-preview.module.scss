@@ -1,0 +1,48 @@
+.VideoPreview {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+
+  &__inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s cubic-bezier(0, 0, 0.2, 1);
+    transition-property: transform, background-color;
+    cursor: pointer;
+    border-radius: inherit;
+    background-color: transparent;
+    transform: scale(1);
+  }
+
+  &:hover &__inner {
+    transform: scale(1.1);
+    background-color: rgba(#000, 0.15);
+  }
+
+  &__play_icon {
+    display: block;
+    width: 68px;
+    height: 68px;
+    @include media(">=md") {
+      width: 84px;
+      height: 84px;
+    }
+
+    @include media(">=lg") {
+      width: 100px;
+      height: 100px;
+    }
+    @include media(">=xl") {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}

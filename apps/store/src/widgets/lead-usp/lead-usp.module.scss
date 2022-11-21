@@ -1,0 +1,43 @@
+.LeadUsp {
+  /*! keep */
+  background-color: var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include media(">=lg") {
+    align-items: flex-start;
+  }
+
+  @include media(">=lg") {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  &__title {
+    font-size: 30px;
+    text-transform: uppercase;
+    white-space: pre-line;
+
+    @include media(">=lg", "<xl") {
+      font-size: 26px;
+    }
+  }
+
+  &__title_normal_at_sm {
+    @include media(">sm") {
+      white-space: normal;
+    }
+  }
+
+  &__description {
+    margin-top: 10px;
+    font-size: var(--font-size-sm);
+  }
+
+  &__action {
+    margin-top: 18px;
+  }
+}

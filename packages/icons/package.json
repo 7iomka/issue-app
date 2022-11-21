@@ -1,0 +1,25 @@
+{
+  "name": "@steklo24/icons",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "icons:generate": "node scripts/svg-codegen.js",
+    "icons:generate-and-watch": "node scripts/svg-codegen.js --watch"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "chokidar": "^3.5.3",
+    "clsx": "^1.1.1",
+    "svg-sprite-loader": "^6.0.11",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-svg-codegen": "^1.0.4"
+  }
+}

@@ -1,0 +1,131 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background-color: var(--root-background);
+  position: relative;
+  z-index: 2;
+  flex: none;
+
+  @include media("<xl") {
+    box-shadow: 0 2px 5px rgba(#000, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding-right: var(--removed-scroll-width);
+  }
+  // z-index: 1;
+}
+
+.HeaderTop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 60px;
+
+  @include media(">=xl") {
+    height: 76px;
+  }
+}
+
+.HeaderMain {
+  /*! keep */
+  // height: 42px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    @include make-container-max-widths-without-gutter;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60px;
+  }
+}
+
+.HeaderBottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // z-index: 89;
+  box-shadow: 0 -2px 5px rgba(#000, 0.15);
+  background-color: var(--root-background);
+
+  &__container {
+    @include media("<sm") {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.HeaderLogo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 140px;
+  transform: translateY(4px);
+  flex-shrink: 0;
+
+  @include media(">=xl") {
+    width: 166px;
+    order: -1;
+    height: auto;
+    min-height: 40px;
+    position: relative;
+    margin: auto 0;
+  }
+
+  svg {
+    width: 100%;
+  }
+}
+
+.HeaderLogoSmall {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.HeaderActions {
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.Header:not(.hasSticky) .HeaderMain {
+  .HeaderActions,
+  .HeaderLogoSmall,
+  .HeaderCatalogMenu {
+    display: none;
+  }
+}
+
+.Header.hasSticky .HeaderMain {
+  box-shadow: 0 2px 5px rgba(#000, 0.15);
+  background-color: var(--root-background);
+  &__container {
+  }
+
+  .HeaderNav {
+    display: none !important;
+  }
+
+  .HeaderCatalogMenu {
+    display: flex;
+    align-self: center;
+    margin-left: 24px;
+  }
+}
+
+.Header.hasSticky :global(.sticky-inner-wrapper) {
+  width: auto !important;
+  left: 0;
+  right: 0;
+}

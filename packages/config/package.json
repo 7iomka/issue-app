@@ -1,0 +1,60 @@
+{
+  "name": "@steklo24/config",
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "*.js",
+    "*.ts",
+    "app/index.ts"
+  ],
+  "scripts": {
+    "generate-theme-variables": "json-to-scss ./app/styles/internal/theme-variables-source.js ./app/styles/internal/theme-variables.generated.scss",
+    "generate-theme-variables:watch": "chokidar './theme/*.*' './app/styles/internal/theme-variables-source.js' --initial=true -c 'npm-run-all generate-theme-variables'",
+    "fix-tailwind-sass-division": "sass-migrator division ./app/styles/generated/tailwind-variables.scss",
+    "__extract-tailwind-variables": "tailwindcss-export-config --config=./tailwind.js --destination=./app/styles/generated/tailwind-variables --format=scss --quoted-keys=true --preserveKeys=colors,screens,spacing,keyframes",
+    "__extract-tailwind-variables:watch": "chokidar 'tailwind.js' --initial=true -c 'npm-run-all __extract-tailwind-variables fix-tailwind-sass-division'"
+  },
+  "devDependencies": {
+    "@feature-sliced/eslint-config": "^0.1.0-beta.6",
+    "@mertasan/tailwindcss-variables": "^2.2.4",
+    "@next/eslint-plugin-next": "^12.1.6",
+    "@svgr/webpack": "^6.2.1",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@thedutchcoder/postcss-rem-to-px": "^0.0.2",
+    "@types/node": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "chokidar-cli": "^3.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "^13.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-boundaries": "^2.10.1",
+    "eslint-plugin-effector": "^0.6.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jest": "^25.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-risxss": "^2.1.0",
+    "eslint-plugin-testing-library": "^5.0.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "get-sass-vars": "^3.4.0",
+    "json-to-scss": "^1.6.2",
+    "npm-run-all": "^4.1.5",
+    "sass-migrator": "^1.5.3",
+    "tailwind-bootstrap-grid": "^5.0.1",
+    "tailwindcss": "^3.2.1",
+    "tailwindcss-export-config": "^4.0.0"
+  },
+  "peerDependencies": {
+    "autoprefixer": "^10.4.0",
+    "effector": "^22.3.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.14",
+    "prettier": "2.6.2"
+  }
+}

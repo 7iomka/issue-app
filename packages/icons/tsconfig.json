@@ -1,0 +1,13 @@
+{
+  "extends": "../config/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@steklo24/*": ["../../apps/*", "../../packages/*"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}

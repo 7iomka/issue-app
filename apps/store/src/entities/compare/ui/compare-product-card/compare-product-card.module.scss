@@ -1,0 +1,89 @@
+// Product card
+.root {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-default);
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  position: relative;
+  width: 218px;
+  height: 146px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  transition: 0.2s ease-out;
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex-grow: 1;
+  }
+  &,
+  * {
+    border-radius: inherit;
+    height: 100%;
+  }
+}
+
+.imageLink {
+  /*! keep */
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.meta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+  padding: 0 9px;
+  margin-top: 20px;
+  z-index: 1;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  @include media(">=xsl") {
+    padding: 0 18px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.titleLink {
+  /*! keep */
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-for-sm);
+  margin-top: 10px;
+  opacity: 0.6;
+}

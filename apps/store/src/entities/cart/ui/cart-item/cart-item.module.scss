@@ -1,0 +1,128 @@
+.root {
+  position: relative;
+}
+
+.removeBtn {
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  right: 0;
+  background-color: var(--gray-500);
+  color: #fff;
+  border-radius: 50%;
+
+  @include media("<xl") {
+    display: none;
+  }
+
+  &:hover {
+    transform: rotate(180deg) scale(1.2);
+    background-color: var(--danger);
+  }
+}
+
+.removeBtn:hover + .base {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.base {
+  display: flex;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.media {
+  flex-shrink: 0;
+}
+.imageContainer {
+  position: relative;
+  width: 88px;
+  height: 94px;
+
+  @include media(">=xl") {
+    width: 98px;
+    height: 105px;
+  }
+}
+.imageLink {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.meta {
+  margin-left: 18px;
+
+  @include media(">=xl") {
+    margin-top: 0;
+    margin-left: 30px;
+    flex-grow: 1;
+    min-width: 0;
+  }
+}
+.main {
+  @include media(">=xl") {
+    display: flex;
+    padding-right: 35px;
+    flex-grow: 1;
+    min-width: 0;
+  }
+}
+.body {
+  flex-grow: 1;
+  min-width: 0;
+}
+.title {
+  text-transform: uppercase;
+  font-size: var(--font-size-md);
+}
+.title_link {
+}
+.selectedOptions {
+  margin-top: 5px;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+.footer {
+  margin-top: 20px;
+
+  @include media(">=xl") {
+    flex: 0 0 40%;
+    max-width: 40%;
+    margin-top: 0;
+    margin-left: 9px;
+  }
+
+  @include media(">=xxl") {
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+}
+.priceContainer {
+  display: inline-block;
+  text-align: left;
+}
+.price {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include media(">=md") {
+    font-size: 20px;
+  }
+
+  @include media(">=lg") {
+    font-size: 22px;
+  }
+}
+.priceValue {
+}
+.priceUnit {
+}
+
+.delivery {
+  padding: 20px 25px 25px;
+  border: 1px dashed rgba(#000, 0.2);
+  border-radius: var(--radius-lg);
+}

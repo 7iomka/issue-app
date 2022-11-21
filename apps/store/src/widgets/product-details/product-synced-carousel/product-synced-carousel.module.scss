@@ -1,0 +1,62 @@
+// Carousel
+.root {
+  /*! keep */
+}
+
+// Main carousel
+.main {
+  --carousel-button-width: 36px;
+  --carousel-button-height: 36px;
+  --carousel-button-color: var(--root-color);
+  --carousel-button-bg: rgba(var(--root-background-rgb), 0.56);
+  --carousel-button-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgb(0, 0, 0, 0.14),
+    0 1px 3px 0 rgb(0, 0, 0, 0.12);
+  --carousel-button-svg-width: 20px;
+  --carousel-button-svg-height: 20px;
+  // --carousel-button-svg-stroke-width: 2.5;
+  width: 100%;
+}
+
+.mainSlide {
+  width: 100%;
+  padding: 0;
+  overscroll-behavior: contain;
+}
+
+.main :global(.carousel__button) {
+  transition: 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  &:hover {
+    --carousel-button-bg: rgba(var(--root-background-rgb), 1);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--root-color-rgb, 0.5);
+  }
+}
+
+.main :global(.carousel__button.is-prev) {
+  left: 12px;
+}
+
+.main :global(.carousel__button.is-next) {
+  right: 12px;
+}
+
+// Thumbs carousel
+.thumbs {
+  margin-top: 16px;
+}
+
+.thumbSlide {
+  opacity: 0.6;
+  overscroll-behavior: contain;
+}
+
+.thumbSlideActive {
+  opacity: 1;
+}
+
+.thumbSlideInner {
+  width: 100%;
+  display: block;
+}

@@ -1,0 +1,24 @@
+.root {
+  /*! keep */
+  display: flex;
+  align-items: center;
+}
+
+.badge {
+  width: var(--dot-size, 8px);
+  height: var(--dot-size, 8px);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+
+  @each $color in $themeColorKeys {
+    &.#{$color} {
+      background-color: var(--#{$color});
+    }
+  }
+}
+
+.label {
+  /*! keep */
+  font-size: var(--font-size-sm);
+  margin-left: 6px;
+}

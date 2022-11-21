@@ -1,0 +1,105 @@
+.root {
+  /*! keep */
+}
+
+// Meta
+.title {
+  font-size: 14px;
+  text-transform: uppercase;
+  @include media(">=md") {
+    font-size: 16px;
+  }
+
+  @include media(">=lg") {
+    font-size: 20px;
+  }
+
+  @include media(">=xl") {
+    font-size: 24px;
+  }
+}
+
+.description {
+  margin-top: 6px;
+  opacity: 0.7;
+  font-size: var(--font-size-sm);
+
+  @include media(">=md") {
+    margin-top: 12px;
+    font-size: var(--font-size-base);
+  }
+
+  @include media(">=lg") {
+    margin-top: 20px;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  order: -1;
+
+  @include media(">=lg") {
+    order: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.topInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include media(">=md", "<lg") {
+    order: -1;
+    justify-content: flex-start;
+    margin-right: -12px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+
+    > * {
+      margin-right: 12px;
+      margin-top: 8px;
+    }
+  }
+
+  @include media(">=lg") {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.vendorCode {
+  opacity: 0.4;
+  font-size: var(--font-size-sm);
+}
+
+.stockStatus {
+  /*! keep */
+}
+
+.priceContainer {
+  display: inline-block;
+  text-align: left;
+}
+.price {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include media(">=md") {
+    font-size: 20px;
+  }
+
+  @include media(">=lg") {
+    font-size: 22px;
+  }
+}
+.priceValue {
+}
+.priceUnit {
+}

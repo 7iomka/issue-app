@@ -1,0 +1,14 @@
+.root {
+  /*! keep */
+  min-width: 0;
+  flex: 1 1 0%;
+  height: inherit;
+  padding: 3px;
+  overflow: hidden;
+}
+
+.link {
+  font-weight: 700;
+  height: inherit;
+  font-size: 13px;
+}

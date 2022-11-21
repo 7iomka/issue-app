@@ -1,0 +1,207 @@
+// Custom carousel
+.c-carousel {
+  position: relative;
+}
+
+// Lead slider
+.c-lead-slider {
+  height: 100%;
+
+  .c-carousel {
+    --swiper-navigation-size: 30px;
+    --swiper-navigation-icon-size: 15px;
+    --swiper-navigation-background-color: #fff;
+    &,
+    .swiper {
+      height: 100%;
+    }
+
+    &__navigation {
+      @include media("<md") {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        @include media("<md") {
+          left: auto;
+          right: auto;
+          position: relative;
+        }
+
+        @include media(">=md") {
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.22);
+        }
+      }
+
+      .swiper-button-next {
+        @include media("<md") {
+          order: 1;
+          margin-left: 6px;
+        }
+
+        @include media(">=md") {
+          right: 10px;
+        }
+      }
+
+      .swiper-button-prev {
+        @include media("<md") {
+          order: -1;
+        }
+
+        @include media(">=md") {
+          left: 10px;
+        }
+      }
+    }
+  }
+  .swiper-slide {
+    padding-left: var(--c-lead-slider__slide-padding-left);
+    padding-right: var(--c-lead-slider__slide-padding-right);
+    @include media("<md") {
+      height: auto;
+    }
+  }
+
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    justify-content: flex-end;
+    @include media("<md") {
+      height: calc(var(--swiper-navigation-size));
+    }
+
+    @include media(">=md") {
+      justify-content: flex-start;
+
+      left: calc(var(--swiper-navigation-size) + 35px);
+    }
+  }
+}
+
+// Product carousel
+.c-product-carousel {
+  max-width: 100%; // fix overflow issue
+  .c-carousel {
+    @include media("<md") {
+      --swiper-navigation-size: var(--swiper-navigation-sm-size);
+      --swiper-navigation-icon-size: var(--swiper-navigation-sm-icon-size);
+    }
+
+    &__navigation {
+      @include media("<md") {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        transform: translateY(50%);
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        @include media("<md") {
+          left: auto;
+          right: auto;
+          position: relative;
+        }
+      }
+
+      .swiper-button-next {
+        @include media("<md") {
+          order: 1;
+        }
+
+        @include media(">=md") {
+          right: auto;
+          left: 100%;
+          margin-left: 1px;
+        }
+      }
+
+      .swiper-button-prev {
+        @include media("<md") {
+          order: -1;
+        }
+        @include media(">=md") {
+          left: auto;
+          right: 100%;
+          margin-right: 1px;
+        }
+      }
+    }
+
+    &__content {
+      overflow: hidden;
+      padding: 15px;
+      margin: -15px;
+      width: calc(100% + 30px);
+
+      .swiper {
+        overflow: visible;
+      }
+
+      .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-visible) > * {
+        &,
+        &::before {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+// Compare product carousel
+.c-compare-product-carousel {
+  max-width: 100%; // fix overflow issue
+  .c-carousel {
+    &__navigation {
+      @include media("<md") {
+        display: none;
+      }
+
+      .swiper-button-next {
+        right: auto;
+        left: 100%;
+        margin-left: -14px;
+        @include media(">=xl") {
+          margin-left: -10%;
+        }
+      }
+
+      .swiper-button-prev {
+        left: auto;
+        right: 100%;
+        margin-right: -14px;
+        @include media(">=xl") {
+          margin-right: -10%;
+        }
+      }
+    }
+
+    &__content {
+      overflow: hidden;
+      padding: 15px;
+      margin: -15px;
+      width: calc(100% + 30px);
+
+      // .swiper {
+      //   overflow: visible;
+      // }
+    }
+
+    .swiper-pagination {
+      position: relative;
+      margin-top: 15px;
+      color: var(--gray-800);
+    }
+  }
+}

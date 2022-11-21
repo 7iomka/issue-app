@@ -1,0 +1,9 @@
+.HeaderPhone {
+  font-weight: 700;
+  position: relative;
+  font-size: 14px !important;
+
+  @include media(">=xsm") {
+    font-size: 16px !important;
+  }
+}

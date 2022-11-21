@@ -1,0 +1,58 @@
+.HeaderBottomMenu {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  justify-content: space-evenly;
+  height: 64px;
+  align-items: center;
+  @include media("<xs") {
+    margin: 0 -8px;
+  }
+
+  &__item {
+    --action-count-size: 14px;
+    opacity: 0.8;
+    position: relative;
+    padding: calc(var(--action-count-size) / 2) 10px;
+    font-weight: 700;
+    height: 100%;
+
+    @include media("<sm") {
+      width: 60px;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-size: 10px;
+    }
+
+    &[data-count]::before {
+      content: attr(data-count) "";
+      position: absolute;
+      width: var(--action-count-size);
+      height: var(--action-count-size);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: var(--radius-full);
+      background-color: var(--secondary);
+      color: #fff;
+      font-weight: 700;
+      top: 4px;
+      left: 50%;
+      margin-left: calc(var(--action-count-size) * -0.5 + 1.6em);
+      font-size: var(--font-size-xs);
+
+      @include media(">=sm") {
+        font-size: var(--font-size-sm);
+      }
+    }
+  }
+}
+
+.HeaderBottomMenuPopper {
+  ul {
+    max-height: calc(100vh - 64px - 10px);
+  }
+}

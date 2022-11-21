@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5", // компилируем ts код в js код версии ES5
+    "module": "esnext", // для поддержки динамического импорта модулей
+    //"module": "AMD",
+    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      // Укажите сопоставление маршрутов для вычисления по сравнению с параметром baseUrl.
+      "three": ["src/modul/three.js"], // Путь относительно "baseUrl".
+      "FBXLoader": ["src/modul/FBXLoader"]
+      /* "OrbitControls":["node_modules/three/examples/jsm/controls/OrbitControls"],
+          "TransformControls":["node_modules/three/examples/jsm/controls/TransformControls"],
+          "StereoEffect":["node_modules/three/examples/jsm/effects/StereoEffect"], */
+    }
+  }
+}
