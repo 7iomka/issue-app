@@ -1,7 +1,7 @@
 import { attach, createEvent, createStore, restore, sample } from 'effector';
 import { debug } from 'patronum/debug';
 import type { UserProfileDto } from '@/shared/api';
-import { api } from '@/shared/api';
+import { api } from '@/shared/api'; 
 // Account namespace
 export * as account from './viewer-account.model';
 

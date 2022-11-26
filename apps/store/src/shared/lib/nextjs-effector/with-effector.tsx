@@ -1,21 +1,21 @@
-import { fork, serialize } from 'effector'
-import { Provider } from 'effector-react/scope'
-import { NextComponentType } from 'next'
-import { AppContext, AppProps } from 'next/app'
-import React, { useRef } from 'react'
-import { INITIAL_STATE_KEY } from './constants'
-import { env } from './env'
-import { state } from './state'
+import { fork, serialize } from 'effector';
+import { Provider } from 'effector-react/scope';
+import type { NextComponentType } from 'next';
+import type { AppContext, AppProps } from 'next/app';
+import React, { useRef } from 'react';
+import { INITIAL_STATE_KEY } from './constants';
+import { env } from './env';
+import { state } from './state';
 
 interface Values {
-  [sid: string]: any
+  [sid: string]: any;
 }
 
 export function useScope(values: Values = {}) {
-  const valuesRef = useRef<Values | null>(null)
+  const valuesRef = useRef<Values | null>(null);
 
   if (env.isServer) {
-    return fork({ values })
+    return fork({ values });
   }
 
   /*
@@ -24,8 +24,8 @@ export function useScope(values: Values = {}) {
    * We need it to be accessable inside getInitialProps
    */
   if (!state.clientScope) {
-    state.clientScope = fork({ values })
-    valuesRef.current = values
+    state.clientScope = fork({ values });
+    valuesRef.current = values;
   }
 
   /*
@@ -33,29 +33,28 @@ export function useScope(values: Values = {}) {
    * Create the new Scope from the old one and save it as before
    */
   if (values !== valuesRef.current) {
-    const currentValues = serialize(state.clientScope)
-    const nextValues = Object.assign({}, currentValues, values)
+    const currentValues = serialize(state.clientScope);
+    const nextValues = { ...currentValues, ...values };
 
-    state.clientScope = fork({ values: nextValues })
-    valuesRef.current = values
+    state.clientScope = fork({ values: nextValues });
+    valuesRef.current = values;
   }
 
-  return state.clientScope
+  return state.clientScope;
 }
 
 export function withEffector(App: NextComponentType<AppContext, any, any>) {
   return function EnhancedApp(props: AppProps<any>) {
-    const { [INITIAL_STATE_KEY]: initialState, ...pageProps } = props.pageProps
+    const { [INITIAL_STATE_KEY]: initialState, ...pageProps } = props.pageProps;
 
-    const scope = useScope(initialState)
+    const scope = useScope(initialState);
 
-    // console.log({initialState: initialState, viewerStore: scope.getState($$viewer.$viewer)});
-    // console.log({initialState, scope});
+    // console.log({ initialState, scope });
 
     return (
       <Provider value={scope}>
         <App {...props} pageProps={pageProps} />
       </Provider>
-    )
-  }
+    );
+  };
 }

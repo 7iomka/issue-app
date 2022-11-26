@@ -1,0 +1,23 @@
+{
+  "extends": "./packages/config/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./apps/store/src/*"],
+      "@steklo24/*": ["./apps/*", "./packages/*"],
+      "nextjs-effector": ["./apps/store/src/shared/lib/nextjs-effector"],
+      "nextjs-effector/*": ["./apps/store/src/shared/lib/nextjs-effector/*"]
+    }
+  },
+  "include": [
+    "**/custom-next-env.d.ts",
+    "**/src/**/*",
+    "**/pages/**/*",
+    "*.js",
+    "*.ts",
+    "**/.eslintrc.js",
+    "**/next.config.js"
+  ],
+  "exclude": ["node_modules", ".next", ".turbo", "next-env.d.ts"]
+}
