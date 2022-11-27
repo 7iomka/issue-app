@@ -5,12 +5,12 @@ import type { NextPage } from 'next';
 import type { EmotionCache } from '@emotion/react';
 import nProgress from 'nprogress';
 import { Router, useRouter } from 'next/router';
-import { useUnit } from 'effector-react/scope';
+import { useUnit, useEvent } from 'effector-react/scope';
 import { isServer } from '@steklo24/utils';
+import { $router2, $number, getNumber, attachRouterEv } from '@/shared/router';
 import { mantineEmotionCache } from './ui-provider';
 import { withHocs } from './hocs';
 import { AppProvider } from './app-provider.component';
-
 // Configure validation
 import '@/shared/lib/validation';
 // Configure date lib
@@ -50,42 +50,54 @@ const clientSideEmotionCache = mantineEmotionCache;
 const WrappedApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component?.getLayout ?? getFallbackLayout;
   const router = useRouter();
-  const [routerUpdated, historyChanged, beforePopstateChanged] = useUnit([
-    $$navigation.routerUpdated,
+  const [historyChanged, beforePopstateChanged] = useUnit([
     $$navigation.historyChanged,
     $$navigation.beforePopstateChanged,
   ]);
+
+  const gettedNumber = useEvent(getNumber);
+
+  useEffect(() => {
+    gettedNumber(Math.random());
+  }, [router]);
+
+  const attachRouter = useEvent(attachRouterEv);
+  const routerUpdated = useEvent($$navigation.routerUpdated);
+
+  useEffect(() => {
+    attachRouter(router);
+  }, [router]);
 
   // Init / update router store
   useEffect(() => {
     routerUpdated(router);
 
-    return () => {
-      routerUpdated(null);
-    };
-  }, [router, routerUpdated]);
+    // return () => {
+    //   routerUpdated(null);
+    // };
+  }, [router]);
 
   // Handle beforePopState
   // NOTE: currently next support only single callback, that can be overwriten on updates
   // See: https://github.com/vercel/next.js/discussions/34835
-  useEffect(() => {
-    router.beforePopState((state) => {
-      beforePopstateChanged(state);
-      return true;
-    });
-  }, [router, beforePopstateChanged]);
+  // useEffect(() => {
+  //   router.beforePopState((state) => {
+  //     beforePopstateChanged(state);
+  //     return true;
+  //   });
+  // }, [router, beforePopstateChanged]);
 
-  // Handle bind events to router events
-  useEffect(() => {
-    const handleRouteChange = (url: string, { shallow }: { shallow: boolean }) => {
-      historyChanged(url);
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
+  // // Handle bind events to router events
+  // useEffect(() => {
+  //   const handleRouteChange = (url: string, { shallow }: { shallow: boolean }) => {
+  //     historyChanged(url);
+  //   };
+  //   router.events.on('routeChangeComplete', handleRouteChange);
 
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events, historyChanged]);
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, [router.events, historyChanged]);
 
   return (
     // <MainErrorBoundary>

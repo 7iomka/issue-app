@@ -1,4 +1,5 @@
-import { createToggler, useToggler } from '@/shared/lib/toggler';
+import { createToggler } from '@/shared/lib/toggler';
+import { useToggler } from '@/shared/use-toggler';
 
 const menuDrawerToggler = createToggler();
 

@@ -1,61 +1,46 @@
-import { fork, serialize } from 'effector'
-import { Provider } from 'effector-react/scope'
-import { NextComponentType } from 'next'
-import { AppContext, AppProps } from 'next/app'
-import React, { useRef } from 'react'
-import { INITIAL_STATE_KEY } from './constants'
-import { env } from './env'
-import { state } from './state'
+import type { Scope, ValueMap } from 'effector';
+import { fork, serialize } from 'effector';
+import { Provider } from 'effector-react/scope';
+import type { NextComponentType } from 'next';
+import type { AppContext, AppProps } from 'next/app';
+import React from 'react';
+// import { headerCatalogMenuDrawerToggler } from '@/widgets/header/ui/header-catalog-menu-drawer';
+import { INITIAL_STATE_KEY } from './constants';
 
-interface Values {
-  [sid: string]: any
-}
+let clientScope: Scope;
 
-export function useScope(values: Values = {}) {
-  const valuesRef = useRef<Values | null>(null)
+export function useScope(initialState: ValueMap | undefined) {
+  // effector ssr
+  const scope = fork({
+    values: {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      ...(clientScope && serialize(clientScope)),
+      ...initialState,
+    },
+  });
 
-  if (env.isServer) {
-    return fork({ values })
+  if (typeof window !== 'undefined') {
+    clientScope = scope;
   }
 
-  /*
-   * Client first render
-   * Create the new Scope and save it globally
-   * We need it to be accessable inside getInitialProps
-   */
-  if (!state.clientScope) {
-    state.clientScope = fork({ values })
-    valuesRef.current = values
-  }
-
-  /*
-   * Values have changed, most likely it's happened on the user navigation
-   * Create the new Scope from the old one and save it as before
-   */
-  if (values !== valuesRef.current) {
-    const currentValues = serialize(state.clientScope)
-    const nextValues = Object.assign({}, currentValues, values)
-
-    state.clientScope = fork({ values: nextValues })
-    valuesRef.current = values
-  }
-
-  return state.clientScope
+  return scope;
 }
 
 export function withEffector(App: NextComponentType<AppContext, any, any>) {
   return function EnhancedApp(props: AppProps<any>) {
-    const { [INITIAL_STATE_KEY]: initialState, ...pageProps } = props.pageProps
+    const { [INITIAL_STATE_KEY]: initialState, ...pageProps } = props.pageProps;
 
-    const scope = useScope(initialState)
-
-    // console.log({initialState: initialState, viewerStore: scope.getState($$viewer.$viewer)});
-    // console.log({initialState, scope});
+    const scope = useScope(initialState);
+    // console.log(
+    //   headerCatalogMenuDrawerToggler.$isOpen.getState(),
+    //   scope.getState(headerCatalogMenuDrawerToggler.$isOpen),
+    // );
+    console.log({ SCOPE: scope });
 
     return (
       <Provider value={scope}>
         <App {...props} pageProps={pageProps} />
       </Provider>
-    )
-  }
+    );
+  };
 }

@@ -1,6 +1,5 @@
-import { createApi, createStore } from 'effector';
+import { createApi, createEvent, createStore } from 'effector';
 import type { Event, Store } from 'effector';
-import { useUnit } from 'effector-react/scope';
 
 export type TogglerInstance = {
   open: Event<void>;
@@ -9,33 +8,20 @@ export type TogglerInstance = {
   $isOpen: Store<boolean>;
 };
 
-export const createToggler = (
-  defaultValue = false,
-  { name, sid }: { name?: string; sid?: string } = {},
-): TogglerInstance => {
-  const $isOpen = createStore(defaultValue, { name, sid });
+export const createToggler = (defaultValue = false): TogglerInstance => {
+  const open = createEvent();
+  const close = createEvent();
+  const toggle = createEvent();
 
-  const { open, close, toggle } = createApi($isOpen, {
-    open: () => true,
-    close: () => false,
-    toggle: (state) => !state,
-  });
+  const $isOpen = createStore(defaultValue)
+    .on(open, () => true)
+    .on(close, () => false)
+    .on(toggle, (v) => !v);
 
   return {
     open,
     close,
     toggle,
     $isOpen,
-  };
-};
-
-export const useToggler = (togglerInstance: TogglerInstance) => {
-  const { $isOpen, ...togglerEvents } = togglerInstance;
-  const isOpen = useUnit($isOpen);
-  const events = useUnit({ ...togglerEvents });
-
-  return {
-    isOpen,
-    ...events,
   };
 };

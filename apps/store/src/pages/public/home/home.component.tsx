@@ -8,14 +8,16 @@ import { RelatedProducts } from '@/widgets/related-products';
 import { $$product } from '@/entities/product';
 import { $$category, CategoryCardsCarousel } from '@/entities/category';
 import { createView } from '@/shared/lib/view';
+import { $router2 } from '@/shared/router';
 
 const Home = createView()
   .units({
+    router2: $router2,
     categories: $$category.$categories,
     popularProducts: $$product.$popularProducts,
     relatedProducts: $$product.$relatedProducts,
   })
-  .view(({ categories, popularProducts, relatedProducts }) => (
+  .view(({ categories, popularProducts, relatedProducts, router2 }) => (
     <>
       <section className="mb-24 lg:hidden">
         <div className="container text-center">
@@ -26,6 +28,7 @@ const Home = createView()
           <div className="mt-10 text-xs uppercase">Cобственное производство в Москве</div>
         </div>
       </section>
+      <p> =>>>>>>>>>>> {router2?.asPath ?? 'empty'}</p>
       <section className="my-24 lg:hidden">
         <div className="container">
           <LeadUsp titleWhiteSpaceNormalAtSm center />

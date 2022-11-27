@@ -2,6 +2,8 @@ import { createEvent, sample } from 'effector';
 import type { StaticPageContext } from 'nextjs-effector';
 import { $$product } from '@/entities/product';
 
+import { $router2 } from '@/shared/router';
+
 const enter = createEvent<StaticPageContext>();
 
 sample({
@@ -12,9 +14,13 @@ sample({
 
 sample({
   clock: enter,
-  fn: () => ({
-    url: '/',
-  }),
+  source: { route: $router2 },
+  fn: ({ route }) => {
+    console.log('URL', route.asPath);
+    return {
+      url: '/',
+    };
+  },
   target: $$product.getRelatedProductsFx,
 });
 

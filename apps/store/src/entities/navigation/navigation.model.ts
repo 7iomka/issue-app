@@ -33,7 +33,7 @@ sample({
 export const pushFx = attach({
   source: $router,
   effect(router, { url, options = {} }: RouterPushDto) {
-    return router?.isReady && router?.push(url, undefined, options);
+    return router?.isReady &&  router?.push(url, undefined, options);
   },
 });
 
