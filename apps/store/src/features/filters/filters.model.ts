@@ -4,7 +4,8 @@ import { combine, createEvent, attach, sample, restore, createStore } from 'effe
 import { debounce } from 'patronum/debounce';
 import { isClient } from '@steklo24/utils';
 import { $$navigation } from '@/entities/navigation';
-import { createToggler, useToggler } from '@/shared/lib/toggler';
+import { createToggler } from '@/shared/lib/toggler';
+import { useToggler } from '@/shared/use-toggler';
 import type {
   FilterCheckboxVariant,
   FilterColorVariant,

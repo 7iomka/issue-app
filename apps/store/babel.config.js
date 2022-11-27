@@ -8,15 +8,7 @@ module.exports = (api) => {
   plugins.push([
     'effector/babel-plugin',
     {
-      factories: [
-        'patronum',
-        // 'effector-react-form',
-        // '@/shared/lib/effector-react-form',
-        // '@/shared/lib/effector-react-form/factories/create-form',
-        '@/shared/lib/toggler',
-        'effector-http-api',
-        'effector-view',
-      ],
+      factories: ['patronum', '@/shared/lib/toggler', 'effector-http-api', 'effector-view'],
       addLoc: true,
       reactSsr: true,
       debugSids: process.env.NODE_ENV === 'development',
@@ -33,15 +25,15 @@ module.exports = (api) => {
     'createForm',
   ]);
 
-  plugins.push([
-    'effector/babel-plugin',
-    {
-      importName: '@/shared/lib/toggler',
-      storeCreators: ['createToggler'],
-      noDefaults: true,
-    },
-    'createToggler',
-  ]);
+  // plugins.push([
+  //   'effector/babel-plugin',
+  //   {
+  //     importName: '@/shared/lib/toggler',
+  //     storeCreators: ['createToggler'],
+  //     noDefaults: true,
+  //   },
+  //   'createToggler',
+  // ]);
   // plugins.push([
   //   'effector/babel-plugin',
   //   {

@@ -40,7 +40,7 @@ const nextConfig = {
        */
       effector: path.resolve('../../node_modules/effector/effector.cjs.js'),
       'effector-react/scope': path.resolve('../../node_modules/effector-react/scope.js'),
-      'effector-react': path.resolve('../../node_modules/effector-react/effector-react.cjs.js'),
+      'effector-react': path.resolve('../../node_modules/effector-react/ssr.js'),
     };
     return config;
   },
